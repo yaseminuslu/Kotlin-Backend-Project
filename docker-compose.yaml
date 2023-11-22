@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  kotlin_db:
+    container_name: kotlinWeb
+    image: postgres:12
+    ports:
+      - 5438:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    volumes:
+
+      - kotlinWebData:/var/lib/postgresql/data
+volumes:
+  kotlinWebData: {}
