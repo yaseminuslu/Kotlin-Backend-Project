@@ -4,6 +4,7 @@ import com.kotlinbackendproject.entity.Employee
 import com.kotlinbackendproject.entity.EmployeeDto
 import com.kotlinbackendproject.repository.EmployeeRepository
 import org.modelmapper.ModelMapper
+import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 
 @Service
@@ -41,5 +42,13 @@ class EmployeeServiceImpl (private var employeeRepository: EmployeeRepository, p
 
     override fun deleteEmployee(id: Long) {
         return employeeRepository.deleteById(id)
+    }
+
+    override fun getEmployeeByASC(): List<Employee> {
+        return employeeRepository.findAll(Sort.by(Sort.Direction.ASC,"age"))
+    }
+
+    override fun getEmployeeByDESC(): List<Employee> {
+        return employeeRepository.findAll(Sort.by(Sort.Direction.DESC,"age"))
     }
 }

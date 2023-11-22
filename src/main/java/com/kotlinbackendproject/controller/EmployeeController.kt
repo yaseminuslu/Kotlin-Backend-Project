@@ -28,5 +28,13 @@ class EmployeeController (private val employeeService: EmployeeService) {
     fun deleteEmployee(@PathVariable id:Long){
         employeeService.deleteEmployee(id)
     }
+    @GetMapping("/asc")
+    fun getEmployeeByASC():List<Employee>{
+        return employeeService.getEmployeeByASC()
+    }
+    @GetMapping("/desc")
+    fun getEmployeeByDESC():List<Employee>{
+        return employeeService.getEmployeeByDESC()
+    }
 
 }

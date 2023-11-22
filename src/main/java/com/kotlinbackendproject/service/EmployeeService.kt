@@ -9,4 +9,6 @@ interface EmployeeService {
     fun createEmployee(employee: Employee): Employee
     fun updateEmployee(id:Long, employee: Employee):Employee
     fun deleteEmployee(id: Long)
+    fun getEmployeeByASC():List<Employee>
+    fun getEmployeeByDESC():List<Employee>
 }
