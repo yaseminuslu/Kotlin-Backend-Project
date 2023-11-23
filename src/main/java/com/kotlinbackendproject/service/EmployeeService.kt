@@ -13,4 +13,5 @@ interface EmployeeService {
     fun getEmployeeByASC():List<Employee>
     fun getEmployeeByDESC():List<Employee>
     fun getFindByDepartmant(department: Department):List<EmployeeDto>
+    fun getFindByNameSurname(name:String, surname:String):List<EmployeeDto>
 }

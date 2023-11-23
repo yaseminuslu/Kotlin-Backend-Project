@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface EmployeeRepository :JpaRepository<Employee,Long> {
     fun findByDepartment(department: Department):List<Employee>
+    fun findByNameContainsAndSurnameContainsIgnoreCase(name:String,surname:String):List<Employee>
 }

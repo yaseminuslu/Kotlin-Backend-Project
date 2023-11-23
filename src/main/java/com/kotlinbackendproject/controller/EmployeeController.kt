@@ -37,10 +37,14 @@ class EmployeeController (private val employeeService: EmployeeService) {
     fun getEmployeeByDESC():List<Employee>{
         return employeeService.getEmployeeByDESC()
     }
-
     @GetMapping("/department")
     fun getFindByDepartment( @RequestParam(value = "department") department: Department):List<EmployeeDto>{
         return employeeService.getFindByDepartmant(department)
+    }
+    @GetMapping("/search")
+    fun getFindByNameSurname(@RequestParam(value = "name") name:String,
+                             @RequestParam(value = "surname") surname:String):List<EmployeeDto>{
+        return employeeService.getFindByNameSurname(name, surname)
     }
 
 }

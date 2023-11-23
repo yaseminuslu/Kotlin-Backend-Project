@@ -63,4 +63,15 @@ class EmployeeServiceImpl (private var employeeRepository: EmployeeRepository, p
         }
         return employeeDtoList
     }
+
+    override fun getFindByNameSurname(name: String, surname: String): List<EmployeeDto> {
+        val employeeList:List<Employee> = employeeRepository.findByNameContainsAndSurnameContainsIgnoreCase(name, surname)
+        val employeeDtoList:MutableList<EmployeeDto> = mutableListOf()
+
+        for (employee in employeeList){
+            val employeeDto:EmployeeDto =modelMapper.map(employee, EmployeeDto::class.java)
+            employeeDtoList.add(employeeDto)
+        }
+        return employeeDtoList
+    }
 }
