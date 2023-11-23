@@ -1,5 +1,6 @@
 package com.kotlinbackendproject.service
 
+import com.kotlinbackendproject.entity.Department
 import com.kotlinbackendproject.entity.Employee
 import com.kotlinbackendproject.entity.EmployeeDto
 import com.kotlinbackendproject.repository.EmployeeRepository
@@ -50,5 +51,16 @@ class EmployeeServiceImpl (private var employeeRepository: EmployeeRepository, p
 
     override fun getEmployeeByDESC(): List<Employee> {
         return employeeRepository.findAll(Sort.by(Sort.Direction.DESC,"age"))
+    }
+
+    override fun getFindByDepartmant(department: Department): List<EmployeeDto> {
+        val employeeList:List<Employee> =employeeRepository.findByDepartment(department)
+        val employeeDtoList:MutableList<EmployeeDto> = mutableListOf()
+
+        for (employee in employeeList){
+            val employeeDto:EmployeeDto=modelMapper.map(employee, EmployeeDto::class.java)
+            employeeDtoList.add(employeeDto)
+        }
+        return employeeDtoList
     }
 }

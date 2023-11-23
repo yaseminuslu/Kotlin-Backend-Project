@@ -1,5 +1,6 @@
 package com.kotlinbackendproject.controller
 
+import com.kotlinbackendproject.entity.Department
 import com.kotlinbackendproject.entity.Employee
 import com.kotlinbackendproject.entity.EmployeeDto
 import com.kotlinbackendproject.service.EmployeeService
@@ -35,6 +36,11 @@ class EmployeeController (private val employeeService: EmployeeService) {
     @GetMapping("/desc")
     fun getEmployeeByDESC():List<Employee>{
         return employeeService.getEmployeeByDESC()
+    }
+
+    @GetMapping("/department")
+    fun getFindByDepartment( @RequestParam(value = "department") department: Department):List<EmployeeDto>{
+        return employeeService.getFindByDepartmant(department)
     }
 
 }
