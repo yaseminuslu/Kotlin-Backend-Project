@@ -1,9 +1,11 @@
-package com.kotlinbackendproject.controller
+package com.kotlinbackendproject.employee.controller
 
-import com.kotlinbackendproject.entity.Department
-import com.kotlinbackendproject.entity.Employee
-import com.kotlinbackendproject.entity.EmployeeDto
-import com.kotlinbackendproject.service.EmployeeService
+import com.kotlinbackendproject.employee.command.EmployeeCreateCommand
+import com.kotlinbackendproject.employee.command.EmployeeUpdateCommand
+import com.kotlinbackendproject.employee.entity.Department
+import com.kotlinbackendproject.employee.entity.Employee
+import com.kotlinbackendproject.employee.entity.EmployeeDto
+import com.kotlinbackendproject.employee.service.EmployeeService
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -18,12 +20,12 @@ class EmployeeController (private val employeeService: EmployeeService) {
         return employeeService.getAllEmployee()
     }
     @PostMapping
-    fun createEmployee(@RequestBody employee: Employee):Employee{
+    fun createEmployee(@RequestBody employee: EmployeeCreateCommand): Employee {
         return employeeService.createEmployee(employee)
     }
     @PutMapping("/{id}")
-    fun updateEmployee(@PathVariable id:Long, @RequestBody employee: Employee):Employee{
-        return employeeService.updateEmployee(id, employee)
+    fun updateEmployee(@PathVariable id:Long, @RequestBody employee: EmployeeUpdateCommand): Employee {
+        return employeeService.updateEmployee(id,employee)
     }
     @DeleteMapping("/{id}")
     fun deleteEmployee(@PathVariable id:Long){
@@ -39,12 +41,20 @@ class EmployeeController (private val employeeService: EmployeeService) {
     }
     @GetMapping("/department")
     fun getFindByDepartment( @RequestParam(value = "department") department: Department):List<EmployeeDto>{
-        return employeeService.getFindByDepartmant(department)
+        return employeeService.getFindByDepartment(department)
     }
     @GetMapping("/search")
     fun getFindByNameSurname(@RequestParam(value = "name") name:String,
                              @RequestParam(value = "surname") surname:String):List<EmployeeDto>{
         return employeeService.getFindByNameSurname(name, surname)
+    }
+    @GetMapping("/company/{id}")
+    fun getByCompanyId( @PathVariable("id") id:Long):List<Employee>{
+        return employeeService.getByCompanyId(id)
+    }
+    @GetMapping("/companyExisting/{id}")
+    fun getExistingCompanyId( @PathVariable("id") id:Long):Boolean{
+        return employeeService.getExistingCompanyId(id)
     }
 
 }
