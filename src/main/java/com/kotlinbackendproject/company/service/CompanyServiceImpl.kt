@@ -2,13 +2,10 @@ package com.kotlinbackendproject.company.service
 
 import com.kotlinbackendproject.company.entity.Company
 import com.kotlinbackendproject.company.repository.CompanyRepository
+import com.kotlinbackendproject.company.specification.CompanyFilter
+import com.kotlinbackendproject.company.specification.CompanySpecification
 import org.springframework.data.domain.Sort
-import org.springframework.data.jpa.domain.AbstractPersistable_
-import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.stereotype.Service
-import java.time.LocalDateTime
-import java.util.*
-
 @Service
 class CompanyServiceImpl(private val companyRepository: CompanyRepository):CompanyService {
     override fun getByCompanyId(id: Long): Company {
@@ -41,6 +38,10 @@ class CompanyServiceImpl(private val companyRepository: CompanyRepository):Compa
 
     override fun getCompanyIdDESC(): List<Company> {
         return companyRepository.findAll(Sort.by(Sort.Direction.DESC, "id"))
+    }
+
+    override fun getAllByFilter(filter: CompanyFilter): List<Company> {
+      return  companyRepository.findAll(CompanySpecification.filter(filter))
     }
 
 }

@@ -6,6 +6,7 @@ import com.kotlinbackendproject.employee.entity.Department
 import com.kotlinbackendproject.employee.entity.Employee
 import com.kotlinbackendproject.employee.entity.EmployeeDto
 import com.kotlinbackendproject.employee.service.EmployeeService
+import com.kotlinbackendproject.employee.specification.EmployeeFilter
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -55,6 +56,11 @@ class EmployeeController (private val employeeService: EmployeeService) {
     @GetMapping("/companyExisting/{id}")
     fun getExistingCompanyId( @PathVariable("id") id:Long):Boolean{
         return employeeService.getExistingCompanyId(id)
+    }
+
+    @GetMapping("/filter")
+    fun getEmployeesByFilter(filter: EmployeeFilter): List<Employee> {
+        return employeeService.getAllByFilter(filter)
     }
 
 }

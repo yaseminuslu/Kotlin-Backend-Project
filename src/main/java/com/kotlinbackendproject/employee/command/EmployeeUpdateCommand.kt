@@ -1,6 +1,5 @@
 package com.kotlinbackendproject.employee.command
 
-import com.kotlinbackendproject.company.entity.Company
 import com.kotlinbackendproject.employee.entity.Department
 
 data class EmployeeUpdateCommand(

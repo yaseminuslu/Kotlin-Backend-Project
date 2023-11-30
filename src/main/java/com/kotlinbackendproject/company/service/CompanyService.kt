@@ -1,7 +1,7 @@
 package com.kotlinbackendproject.company.service
 
 import com.kotlinbackendproject.company.entity.Company
-import java.time.LocalDateTime
+import com.kotlinbackendproject.company.specification.CompanyFilter
 
 interface CompanyService {
     fun getByCompanyId(id:Long):Company
@@ -11,4 +11,5 @@ interface CompanyService {
     fun deleteCompany(id:Long)
     fun getCompanyIdASC():List<Company>
     fun getCompanyIdDESC():List<Company>
+    fun getAllByFilter(filter: CompanyFilter):List<Company>
 }

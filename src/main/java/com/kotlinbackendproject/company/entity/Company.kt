@@ -24,5 +24,4 @@ class Company() {
 
     @Column(name = "companyDate")
      var date:LocalDateTime=LocalDateTime.now()
-
 }

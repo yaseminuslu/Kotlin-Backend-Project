@@ -1,13 +1,10 @@
 package com.kotlinbackendproject.employee.entity
 
-    import com.fasterxml.jackson.annotation.JsonBackReference
-    import com.fasterxml.jackson.annotation.JsonManagedReference
     import com.kotlinbackendproject.company.entity.Company
     import com.kotlinbackendproject.employee.command.EmployeeUpdateCommand
     import jakarta.persistence.*
 
-
-    @Entity
+@Entity
     @Table(name = "employees")
     class Employee() {
         @Id
@@ -41,4 +38,5 @@ package com.kotlinbackendproject.employee.entity
              command.department?.let { department=it }
             // command.companyId?.let { company.apply { id=it} }
          }
+
 }

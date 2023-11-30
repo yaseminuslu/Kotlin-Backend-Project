@@ -1,6 +1,5 @@
 package com.kotlinbackendproject.employee.service
 
-import com.kotlinbackendproject.company.entity.Company
 import com.kotlinbackendproject.company.repository.CompanyRepository
 import com.kotlinbackendproject.employee.command.EmployeeCreateCommand
 import com.kotlinbackendproject.employee.command.EmployeeUpdateCommand
@@ -9,6 +8,8 @@ import com.kotlinbackendproject.employee.entity.Department
 import com.kotlinbackendproject.employee.entity.Employee
 import com.kotlinbackendproject.employee.entity.EmployeeDto
 import com.kotlinbackendproject.employee.repository.EmployeeRepository
+import com.kotlinbackendproject.employee.specification.EmployeeFilter
+import com.kotlinbackendproject.employee.specification.EmployeeSpecification
 import org.modelmapper.ModelMapper
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
@@ -86,5 +87,9 @@ class EmployeeServiceImpl (
 
     override fun getExistingCompanyId(id: Long): Boolean {
         return employeeRepository.existsAllByCompanyId(id)
+    }
+
+    override fun getAllByFilter(filter: EmployeeFilter): List<Employee> {
+        return employeeRepository.findAll(EmployeeSpecification.filter(filter))
     }
 }

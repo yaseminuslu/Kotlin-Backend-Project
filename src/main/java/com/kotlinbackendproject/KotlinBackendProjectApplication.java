@@ -1,7 +1,5 @@
 package com.kotlinbackendproject;
 
-import com.kotlinbackendproject.company.repository.CompanyRepository;
-import com.kotlinbackendproject.employee.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
